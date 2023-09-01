@@ -1,4 +1,4 @@
-const axios = require("axios");
+import axios from "axios";
 
 class TodoController {
 
@@ -8,7 +8,7 @@ class TodoController {
     //http://localhost:8080/create
     saveTodo(todo) {
 
-        return axios.post('/create')
+        return axios.post(`/create/${todo}`)
     }
 
 
@@ -16,18 +16,15 @@ class TodoController {
     //Deleting TO-DO
     //http://localhost:8080/delete
     deleteTodo(id) {
-        todoService.deleteTodo(id);
 
-        return axios.post('/delete')
+        return axios.post(`/delete${id}`)
     }
 
     //Deleting All TO-DO
     //http://localhost:8080/deleteall
-    @GetMapping("deleteall")
     deleteAll() {
 
-
-        return axios.get('/deleteall')
+        return axios.get(`/deleteall`)
     }
 
 
@@ -37,7 +34,7 @@ class TodoController {
     updateTodo(newTodo, id) {
 
 
-        return axios.post('/update')
+        return axios.post(`/update/${newTodo,id}`) 
 
 
     }
@@ -47,9 +44,11 @@ class TodoController {
 
     showTodos() {
 
-        return axios.get('/')
+        return axios.delete();
     }
 
 
 
-}
+} //end class
+
+export default new TodoService();

@@ -17,8 +17,10 @@ public class TodoController {
 
     //Creating TO-DO
     @PostMapping("/create")
-    public void saveTodo(@RequestBody TodoDTO todo){
-        todoService.save(todo);
+    public void saveTodo(String todo){
+        TodoDTO todoDto = new TodoDTO();
+        todoDto.setTodo(todo);
+        todoService.save(todoDto);
         System.out.println("şükür allah");
 
     }

@@ -1,6 +1,7 @@
 import axios from "axios";
 
-class TodoController {
+class TodoService {
+
 
 
 

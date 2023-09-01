@@ -3,9 +3,6 @@ import TodoService from '../Service/TodoService';
 
 function TodoCreate({ t }) {
 
-    //REDIRECT
-    const navigate = useNavigate();
-
 
     //STATE
     const [todo, setTodo] = useState("");

@@ -1,20 +1,3 @@
-package com.erkalalpay.todotechcareer.Controller;
-
-import com.erkalalpay.todotechcareer.Dto.TodoDTO;
-import com.erkalalpay.todotechcareer.Entity.Todo;
-import com.erkalalpay.todotechcareer.Service.TodoService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-
-
-@RestController
-public class TodoController {
-
-    @Autowired
-    private TodoService todoService;
-
     //Creating TO-DO
     //http://localhost:8080/create
     @PostMapping("/create")
@@ -30,7 +13,7 @@ public class TodoController {
     public void deleteTodo (@RequestParam Long id){
         todoService.deleteTodo(id);
     }
-
+    
     //Deleting All TO-DO
     //http://localhost:8080/deleteall
     @GetMapping("deleteall")
@@ -41,7 +24,7 @@ public class TodoController {
 
 
     //Updating TO-DO
-    //http://localhost:8080/update
+    /http://localhost:8080/update
     @PostMapping("/update")
     public TodoDTO updateTodo (@RequestParam String newTodo, @RequestParam Long id){
 
@@ -57,7 +40,3 @@ public class TodoController {
         List<Todo> todos = todoService.collectTodos();
         return todoService.convertTodostoDTOs(todos);
     }
-
-
-
-}

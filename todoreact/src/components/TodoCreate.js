@@ -5,19 +5,19 @@ function TodoCreate({ t }) {
 
 
     //STATE
-    const [todo, setTodo] = useState("");
+    const [todoName, setTodoName] = useState("");
     const [error, setError] = useState();
 
     useEffect(() => {
         setError(undefined);
-    }, [todo]);
+    }, [todoName]);
 
     const addTodo = async (event) => {
         event.preventDefault();
 
         // Yeni todo nesnesini burada oluşturmalısınız
         const newTodo = {
-            todo
+            todoName
         };
         console.log(newTodo);
 
@@ -30,14 +30,16 @@ function TodoCreate({ t }) {
         }
     }
 
+   
+
 
      // CHANGE
   const todoOnChange = (event) => {
-    const { todo } = event.target;
-    //console.log(`${name} => ${value}`);
+    const { todoName, value } = event.target;
+    
 
     // onChange
-    setTodo(todo)
+    setTodoName(value)
   }
 
 
@@ -47,19 +49,17 @@ function TodoCreate({ t }) {
       <form>
         <h2 className="display-3 mt-4">{('todo')}</h2>
         <div className="form-group">
-          <span>{('todo')}</span>
+          <span>{('')}</span>
           <input
             type="text"
             className="form-control"
-            placeholder={('todo')}
+            placeholder={('todo input')}
             required={true}
             autoFocus={true}
             id="todo_data"
             name="todo_data"
             onChange={todoOnChange}
-          //onChange={(event)=>{setCategoryName(event.target.value)}}
           />
-          {/* state hatayı bootstrap ile alert ekrana basma */}
           {error ? <div className="alert alert-danger" role="alert">
             {error.todo}
           </div> : ""}

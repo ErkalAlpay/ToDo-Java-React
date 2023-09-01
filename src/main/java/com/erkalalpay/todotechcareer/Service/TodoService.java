@@ -6,12 +6,14 @@ import com.erkalalpay.todotechcareer.Entity.Todo;
 import com.erkalalpay.todotechcareer.Repository.TodoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Service
+@CrossOrigin("*")
 public class TodoService {
 
     @Autowired

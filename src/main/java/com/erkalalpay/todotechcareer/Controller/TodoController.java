@@ -29,9 +29,9 @@ public class TodoController {
     @PostMapping("/update")
     public TodoDTO updateTodo (@RequestParam String newTodo, @RequestParam Long id){
 
-        todoService.updateTodos(id, newTodo);
+        TodoDTO todoDTO = todoService.updateTodos(id, newTodo);
 
-        return null;
+        return todoDTO;
     }
 
 }

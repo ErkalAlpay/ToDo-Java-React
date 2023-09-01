@@ -21,11 +21,9 @@ public class TodoService {
 
 
     public void save(String todotext){
-        //To-do to-do = beanConfig.modelMapperBean().map(todoDto, To-do.class);
         Todo todo = new Todo();
         todo.setTodo(todotext);
         todoRepository.save(todo);
-
     }
 
     public TodoDTO updateTodos (long id, String text){

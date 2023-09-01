@@ -34,6 +34,10 @@ public class TodoService {
         return todoDTO;
     }
 
+    public void deleteTodo (long id){
+        todoRepository.deleteById(id);
+    }
+
 
 
 }

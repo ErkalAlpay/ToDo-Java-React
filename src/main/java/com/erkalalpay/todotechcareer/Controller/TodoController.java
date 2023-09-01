@@ -12,14 +12,20 @@ public class TodoController {
     @Autowired
     private TodoService todoService;
 
-
+    //Todo ekleme işlemi
     @PostMapping("/create")
     public void saveTodo(@RequestBody TodoDTO todo){
         todoService.save(todo);
         System.out.println("şükür allah");
 
     }
+    //Todo silme işlemi
+    @PostMapping("/delete")
+    public void deleteTodo (@RequestParam Long id){
+        todoService.deleteTodo(id);
+    }
 
+    //Todo güncelleme işlemi
     @PostMapping("/update")
     public TodoDTO updateTodo (@RequestParam String newTodo, @RequestParam Long id){
 

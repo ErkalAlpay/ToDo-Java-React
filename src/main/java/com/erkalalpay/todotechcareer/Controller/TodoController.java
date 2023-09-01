@@ -28,6 +28,13 @@ public class TodoController {
         todoService.deleteTodo(id);
     }
 
+    @GetMapping("deleteall")
+    public void deleteAll(){
+        todoService.deleteAllTodos();
+    }
+
+
+
     //Updating TO-DO
     @PostMapping("/update")
     public TodoDTO updateTodo (@RequestParam String newTodo, @RequestParam Long id){

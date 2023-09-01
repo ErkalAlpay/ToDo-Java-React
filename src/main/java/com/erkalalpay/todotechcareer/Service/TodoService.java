@@ -57,6 +57,10 @@ public class TodoService {
         return todoDtoList;
     }
 
+    public void deleteAllTodos(){
+        todoRepository.deleteAll();
+    }
+
 
 
 }

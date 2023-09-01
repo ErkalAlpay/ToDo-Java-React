@@ -20,8 +20,10 @@ public class TodoService {
     private BeanConfig beanConfig;
 
 
-    public void save(TodoDTO todoDto){
-        Todo todo = beanConfig.modelMapperBean().map(todoDto, Todo.class);
+    public void save(String todotext){
+        //To-do to-do = beanConfig.modelMapperBean().map(todoDto, To-do.class);
+        Todo todo = new Todo();
+        todo.setTodo(todotext);
         todoRepository.save(todo);
 
     }

@@ -22,7 +22,7 @@ public class TodoController {
     public void saveTodo(@RequestParam String todo){
 
         todoService.save(todo);
-        System.out.println("şükür allah");
+
 
     }
     //Deleting TO-DO

@@ -9,7 +9,7 @@ class TodoService {
     //http://localhost:8080/create
     saveTodo(todo) {
 
-        return axios.post(`http://localhost:8080/create/${todo}`)
+        return axios.post(`http://localhost:8080/create`,todo,)
     }
 
 
@@ -18,7 +18,7 @@ class TodoService {
     //http://localhost:8080/delete
     deleteTodo(id) {
 
-        return axios.post(`http://localhost:8080/delete${id}`)
+        return axios.post(`http://localhost:8080/delete`,id,)
     }
 
     //Deleting All TO-DO

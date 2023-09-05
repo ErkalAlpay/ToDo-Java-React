@@ -17,7 +17,7 @@ function TodoCreate({ t }) {
 
         // Yeni todo nesnesini burada oluşturmalısınız
         const newTodo = {
-            todoName
+            "todo":todoName
         };
         console.log(newTodo);
 

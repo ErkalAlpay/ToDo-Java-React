@@ -19,17 +19,19 @@ public class TodoController {
     //Creating TO-DO
     //http://localhost:8080/create
     @PostMapping("/create")
-    public void saveTodo(@RequestParam String todo){
-
-        todoService.save(todo);
+    public void saveTodo(@RequestBody TodoDTO todo){
+        String todoString = todo.getTodo();
+        todoService.save(todoString);
 
 
     }
     //Deleting TO-DO
     //http://localhost:8080/delete
     @PostMapping("/delete")
-    public void deleteTodo (@RequestParam Long id){
-        todoService.deleteTodo(id);
+    public void deleteTodo (@RequestBody TodoDTO id){
+
+        Long todoid = id.getId();
+        todoService.deleteTodo(todoid);
     }
 
     //Deleting All TO-DO

@@ -18,6 +18,4 @@ public class Todo extends BaseEntity {
     @Column(name ="is_completed")
     private Boolean isCompleted = false;
 
-
-
 }

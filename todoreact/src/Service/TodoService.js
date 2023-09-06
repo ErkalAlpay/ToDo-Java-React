@@ -2,9 +2,6 @@ import axios from "axios";
 
 class TodoService {
 
-
-
-
     //Creating TO-DO
     //http://localhost:8080/create
     saveTodo(todo) {
@@ -51,5 +48,10 @@ class TodoService {
 
 
 } //end class
+
+
+
+
+
 
 export default new TodoService();

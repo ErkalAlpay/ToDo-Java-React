@@ -70,7 +70,7 @@ function TodoCreate({ t }) {
           disabled={!true}
           onClick={addTodo}>{('add')}</button>
       </form>
-      <br /><br /><br /><br /><br /><br /><br /><br />
+      <br /><br />
     </React.Fragment>
   ) //end return
 } //end fucntion

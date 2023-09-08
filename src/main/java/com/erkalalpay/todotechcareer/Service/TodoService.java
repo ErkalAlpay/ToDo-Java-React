@@ -41,6 +41,16 @@ public class TodoService {
         return todoDTO;
     }
 
+    //SINGLE TO-DO CHECKBOX ACTION
+    public TodoDTO checkTodo(Long id){
+        Todo todo = todoRepository.getById(id);
+        todo.setIsCompleted(!todo.getIsCompleted());
+        todo.setCheckedTime(new Date());
+        todoRepository.save(todo);
+        TodoDTO todoDTO= beanConfig.modelMapperBean().map(todo, TodoDTO.class);
+        return todoDTO;
+    }
+
     public void deleteTodo (long id){
 
         todoRepository.deleteById(id);

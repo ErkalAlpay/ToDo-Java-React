@@ -20,17 +20,6 @@ export default function TodoList() {
 
   }, []);
 
-  //LIST
-
-  // const getList = (()=>{
-  //   axios.get("http://localhost:8080/")
-  //   .then((response)=>{
-  //   console.log(response.data);
-  //   setTodoList(response.data);
-  //   })
-  //   .catch((err)=>{console.error(err);})
-
-  // });
 
   //UPDATE
 
@@ -40,9 +29,18 @@ export default function TodoList() {
     localStorage.setItem("todo_update_todoName", todoName);
   }
 
-  //CHECKBOX
+  //CHECKING-UNCHECKING TO-DO
+  const isCompleted = (id) => {
+    axios.put(`http://localhost:8080/check/${id}`)
+      .then((response) => {
+        //"..." işareti TodoList içindeki verileri dışarı aktarıyor (dizi içine)
+        TodoList.push(response.data);
+        setTodoList(TodoList);
+        //location.reload();
+    
+      });
 
-
+  }
 
   //DELETE
   const setDeleteTodos = (() => {
@@ -79,6 +77,8 @@ export default function TodoList() {
     localStorage.setItem("todo_select", id);
   }
 
+  //()=> (todocheck.checked= data.isCompleted)
+
 
   //RETURN
   return (
@@ -104,10 +104,16 @@ export default function TodoList() {
                 <td>{data.id}</td>
                 <td>{data.todo}</td>
                 <td>
-                  <input type='checkbox' id="abc" checked={data.isCompleted} />
+                  <input type='checkbox' id="abc" value={data.isCompleted} onChange={() => isCompleted(data.id)}/>
                   <label for="abc">
                     {(data.isCompleted) ? "Tamamlandı" : "Tamamlanmadı"}
                   </label>
+                </td>
+
+                <td>
+
+
+
                 </td>
 
                 <td>

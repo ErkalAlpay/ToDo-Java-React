@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @CrossOrigin("*")
@@ -22,14 +23,16 @@ public class TodoService {
     private BeanConfig beanConfig;
 
 
+    //TO-DO ADD/SAVE
     public void save(String todotext){
         Todo todo = new Todo();
         todo.setTodo(todotext);
         todoRepository.save(todo);
     }
 
-    public TodoDTO updateTodos (long id, String text){
 
+    //SINGLE TO-DO UPDATE
+    public TodoDTO updateTodos (long id, String text){
         Todo todo = todoRepository.getById(id);
         todo.setTodo(text);
         todo.setUpdatedTime(new Date());
@@ -39,9 +42,10 @@ public class TodoService {
     }
 
     public void deleteTodo (long id){
+
         todoRepository.deleteById(id);
     }
-
+    //FINDING ALL TO-DO's AND PUTING ON LIST
     public List collectTodos (){
         List<Todo> todos = todoRepository.findAll();
         return todos;

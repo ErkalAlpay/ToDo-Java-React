@@ -42,6 +42,15 @@ public class TodoController {
     }
 
 
+    //Check TO-DO
+    //http://localhost:8080/check
+    @PutMapping("/check/{id}")
+    public TodoDTO checkTodo (@PathVariable Long id){
+
+        return todoService.checkTodo(id);
+    }
+
+
 
     //Updating TO-DO
     //http://localhost:8080/update

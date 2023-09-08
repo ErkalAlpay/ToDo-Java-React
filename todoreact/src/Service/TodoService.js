@@ -26,6 +26,15 @@ class TodoService {
     }
 
 
+    //Checkbox for completed TO-DO
+    //http://localhost:8080/check
+    checkTodo(id){
+
+        return axios.post(`http://localhost:8080/check/`,id,)
+
+    }
+
+
 
     //Updating TO-DO
     //http://localhost:8080/update

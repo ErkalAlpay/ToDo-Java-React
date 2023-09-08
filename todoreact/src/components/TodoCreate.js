@@ -47,7 +47,7 @@ function TodoCreate({ t }) {
   return (
     <React.Fragment>
       <form>
-        <h2 className="display-3 mt-4">{('todo')}</h2>
+        <h2 className="text-center display-3 mt-4">{('todo')}</h2>
         <div className="form-group">
           <span>{('')}</span>
           <input

@@ -104,7 +104,7 @@ export default function TodoList() {
                 <td>{data.id}</td>
                 <td>{data.todo}</td>
                 <td>
-                  <input type='checkbox' id="abc" value={data.isCompleted} onChange={() => isCompleted(data.id)}/>
+                  <input type='checkbox' id="abc" checked={data.isCompleted} onChange={() => isCompleted(data.id)}/>
                   <label for="abc">
                     {(data.isCompleted) ? "Tamamlandı" : "Tamamlanmadı"}
                   </label>

@@ -55,9 +55,9 @@ public class TodoController {
     //Updating TO-DO
     //http://localhost:8080/update
     @PostMapping("/update")
-    public TodoDTO updateTodo (@RequestParam String newTodo, @RequestParam Long id){
+    public TodoDTO updateTodo (@RequestBody TodoDTO e){
 
-        TodoDTO todoDTO = todoService.updateTodos(id, newTodo);
+        TodoDTO todoDTO = todoService.updateTodos(e);
 
         return todoDTO;
     }

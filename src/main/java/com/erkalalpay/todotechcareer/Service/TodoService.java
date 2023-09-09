@@ -29,9 +29,9 @@ public class TodoService {
 
 
     //SINGLE TO-DO UPDATE
-    public TodoDTO updateTodos (long id, String text){
-        Todo todo = todoRepository.getById(id);
-        todo.setTodo(text);
+    public TodoDTO updateTodos (TodoDTO e){
+        Todo todo = todoRepository.getById(e.getId());
+        todo.setTodo(e.getTodo());
         todo.setUpdatedTime(new Date());
         todoRepository.save(todo);
         TodoDTO todoDTO= beanConfig.modelMapperBean().map(todo, TodoDTO.class);
@@ -48,6 +48,10 @@ public class TodoService {
         return todoDTO;
     }
 
+    //FIND BY ID
+
+
+    //DELETE
     public void deleteTodo (long id){
 
         todoRepository.deleteById(id);

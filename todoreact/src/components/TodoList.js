@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from "axios";
 
 
@@ -9,7 +10,9 @@ export default function TodoList() {
   //STATE
   const [TodoList, setTodoList] = useState([]);
 
-  //USE.EFFECT
+
+
+  //USE EFFECT
   useEffect(() => {
     axios.get("http://localhost:8080/")
       .then((response) => {
@@ -21,13 +24,13 @@ export default function TodoList() {
   }, []);
 
 
-  //UPDATE
+  // //UPDATE
 
-  const setUpdateList = (data) => {
-    let { id, todoName } = data;
-    localStorage.setItem("todo_update_id", id);
-    localStorage.setItem("todo_update_todoName", todoName);
-  }
+  // const setUpdateList = (data) => {
+  //   let { id, todoName } = data;
+  //   localStorage.setItem("todo_update_id", id);
+  //   localStorage.setItem("todo_update_todoName", todoName);
+  // }
 
   //CHECKING-UNCHECKING TO-DO
   const isCompleted = (id) => {
@@ -37,7 +40,7 @@ export default function TodoList() {
         TodoList.push(response.data);
         setTodoList(TodoList);
         //location.reload();
-    
+
       });
 
   }
@@ -74,7 +77,7 @@ export default function TodoList() {
   //SELECT
 
   const setSelectTodo = (id) => {
-    localStorage.setItem("todo_select", id);
+    localStorage.setItem("todo_select_id", id);
   }
 
   //()=> (todocheck.checked= data.isCompleted)
@@ -104,16 +107,16 @@ export default function TodoList() {
                 <td>{data.id}</td>
                 <td>{data.todo}</td>
                 <td>
-                  <input type='checkbox' id="abc" checked={data.isCompleted} onChange={() => isCompleted(data.id)}/>
+                  <input type='checkbox' id="abc" checked={data.isCompleted} onChange={() => isCompleted(data.id)} />
                   <label for="abc">
                     {(data.isCompleted) ? "Tamamlandı" : "Tamamlanmadı"}
                   </label>
                 </td>
-
+                 <Link to={`/todo/update`}>
+                   <i onClick={() => setSelectTodo(data.id)} class="fa-solid fa-pen"></i>
+                 </Link>
                 <td>
-
-
-
+                   <i class="fa-solid fa-trash"></i>               
                 </td>
 
                 <td>

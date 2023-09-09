@@ -34,14 +34,12 @@ class TodoService {
 
     }
 
-
-
     //Updating TO-DO
     //http://localhost:8080/update
-    updateTodo(newTodo, id) {
+    updateTodo(newTodo) {
 
 
-        return axios.post(`http://localhost:8080/update/${newTodo,id}`) 
+        return axios.post(`http://localhost:8080/update/`,{newTodo}) 
 
 
     }

@@ -5,8 +5,9 @@ import TodoService from '../Service/TodoService';
 export default function TodoUpdate() {
 
     //STATE
-    const [todoName, setTodoName] = useState([]);
+    const [todo, setTodo] = useState([]);
     const [id, setID] = useState(null);
+    //const [isCompleted, setIsCompleted] = useState(null);
 
     //USE EFFECT
     useEffect(() => {
@@ -20,23 +21,24 @@ export default function TodoUpdate() {
     // Browser'ın post için durmasını istiyorum
     event.preventDefault();
 
-
     //NEW TODO OBJECT
     const newTodo={
-        id: localStorage.getItem("todo_select_id"),
-        todoName
+        id: id,
+        todo,
+        //isCompleted
     }
+    console.log(newTodo);
 
     // API 
     try {
-        const response= await TodoService.updateTodo(newTodo)
+        const response= await axios.post("http://localhost:8080/update",newTodo)
         if (response.status===200){
-          navigate(TodoService.showTodos);
+          navigate("http://localhost:3000/");
         }
      } catch (err) {
       console.error(err);
      }
-    }
+    }//END POST
 
     //RETURN
     return (
@@ -44,20 +46,19 @@ export default function TodoUpdate() {
       <form>
         <h2 className="display-3 mt-4"></h2>
         <div className="form-group">
-          <span>{'newtodo_name'}</span>
           <input 
           type="text" 
           className="form-control" 
-          placeholder="newtodo_name"
+          placeholder="Todo giriniz"
           required={true}
           autoFocus={true}
           id="newtodo_data"
           name="newtodo_data"
-          onChange={(event)=>{setTodoName(event.target.value)}}
-          value={todoName}
+          onChange={(event)=>{setTodo(event.target.value);}}
+          value={todo}
           />
           </div>
-          <button type='submit' className="btn btn-primary mt-3" onClick={todoUpdate}>{('todo/update')}</button>
+          <button type='submit' className="btn btn-primary mt-3"  onClick={todoUpdate}> {('Update')} </button>
       </form>
       <br /><br /><br /><br /><br /><br /><br /><br />
     </>

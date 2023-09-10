@@ -15,7 +15,7 @@ class TodoService {
     //http://localhost:8080/delete
     deleteTodo(id) {
 
-        return axios.post(`http://localhost:8080/delete`,id,)
+        return axios.put(`http://localhost:8080/delete/${id}`)
     }
 
     //Deleting All TO-DO
@@ -30,7 +30,7 @@ class TodoService {
     //http://localhost:8080/check
     checkTodo(id){
 
-        return axios.post(`http://localhost:8080/check/`,id,)
+        return axios.put(`http://localhost:8080/check/${id}`)
 
     }
 
@@ -39,7 +39,7 @@ class TodoService {
     updateTodo(newTodo) {
 
 
-        return axios.post(`http://localhost:8080/update/`,{newTodo}) 
+        return axios.post("http://localhost:8080/update",newTodo)
 
 
     }

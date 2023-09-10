@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import TodoService from '../Service/TodoService';
 
-function TodoCreate({ t }) {
+
+function TodoCreate({}) {
 
 
     //STATE
@@ -28,6 +29,7 @@ function TodoCreate({ t }) {
         } catch (err) {
             setError(err.response.data.validationErrors);
         }
+        
     }
 
    

@@ -1,21 +1,25 @@
-import axios from 'axios';
-import react, { useEffect, useState, navigate } from 'react'
+import react, { useEffect, useState, } from 'react'
 import TodoService from '../Service/TodoService';
+import { Navigate, redirect } from 'react-router-dom';
 
 export default function TodoUpdate() {
 
     //STATE
     const [todo, setTodo] = useState([]);
     const [id, setID] = useState(null);
+    
     //const [isCompleted, setIsCompleted] = useState(null);
 
+    //Navigate
     //USE EFFECT
     useEffect(() => {
         //1.YOL (ID)
         setID(localStorage.getItem("todo_select_id"))
+        
 
     }); //end EFFECT
 
+    
     // POST
     const todoUpdate= async (event)=>{
     // Browser'ın post için durmasını istiyorum
@@ -31,9 +35,9 @@ export default function TodoUpdate() {
 
     // API 
     try {
-        const response= await axios.post("http://localhost:8080/update",newTodo)
+        const response= await TodoService.updateTodo(newTodo)
         if (response.status===200){
-          navigate("http://localhost:3000/");
+          redirect("http://localhost:3000/");
         }
      } catch (err) {
       console.error(err);

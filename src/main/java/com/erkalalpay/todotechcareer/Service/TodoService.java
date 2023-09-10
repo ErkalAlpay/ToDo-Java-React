@@ -28,7 +28,7 @@ public class TodoService {
     }
 
 
-    //SINGLE TO-DO UPDATE
+    //TO-DO UPDATE
     public TodoDTO updateTodos (TodoDTO e){
         Todo todo = todoRepository.getById(e.getId());
         todo.setTodo(e.getTodo());
@@ -53,7 +53,6 @@ public class TodoService {
 
     //DELETE
     public void deleteTodo (long id){
-
         todoRepository.deleteById(id);
     }
     //FINDING ALL TO-DO's AND PUTING ON LIST

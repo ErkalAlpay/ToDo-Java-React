@@ -46,13 +46,12 @@ export default function TodoList() {
   }
 
   //DELETE
-  const setDeleteTodos = (() => {
+  const setDeleteTodo = ((id) => {
 
-    if (window.confirm("silmek istediğine emin misin")) {
-      axios.get("http://localhost:8080/deleteall")
+    if (window.confirm("Silmek istediğine emin misin")) {
+      axios.put(`http://localhost:8080/delete/${id}`)
         .then(() => {
           getList();
-
         })
         .catch((err) => { console.error(err); })
     }
@@ -116,13 +115,11 @@ export default function TodoList() {
                    <i onClick={() => setSelectTodo(data.id)} class="fa-solid fa-pen"></i>
                  </Link>
                 <td>
-                   <i class="fa-solid fa-trash"></i>               
+                   <i class="fa-solid fa-trash text-danger" onClick={()=> setDeleteTodo(data.id)}></i>               
                 </td>
 
                 <td>
-                  {/* <Link to={getList()}>
-                     <i onClick={()=> getList(data.id)} className='fa-solid fa-expand text-warning'> </i>
-                  </Link> */}
+                  
 
                 </td>
 

@@ -27,11 +27,9 @@ public class TodoController {
     }
     //Deleting TO-DO
     //http://localhost:8080/delete
-    @PostMapping("/delete")
-    public void deleteTodo (@RequestBody TodoDTO id){
-
-        Long todoid = id.getId();
-        todoService.deleteTodo(todoid);
+    @PutMapping("/delete/{id}")
+    public void deleteTodo (@PathVariable Long id){
+        todoService.deleteTodo(id);
     }
 
     //Deleting All TO-DO

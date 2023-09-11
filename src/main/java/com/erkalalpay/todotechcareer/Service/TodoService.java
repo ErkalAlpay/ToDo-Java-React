@@ -1,6 +1,6 @@
 package com.erkalalpay.todotechcareer.Service;
 
-import com.erkalalpay.todotechcareer.Bean.BeanConfig;
+import com.erkalalpay.todotechcareer.Configuration.BeanConfig;
 import com.erkalalpay.todotechcareer.Model.Dto.TodoDTO;
 import com.erkalalpay.todotechcareer.Model.Entity.Todo;
 import com.erkalalpay.todotechcareer.Repository.TodoRepository;

@@ -20,5 +20,7 @@ public class Todo extends BaseEntity {
     @Column(name ="checked_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date checkedTime;
+    @ManyToOne
+    private User user;
 
 }

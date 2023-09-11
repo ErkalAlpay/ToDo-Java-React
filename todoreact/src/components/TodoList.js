@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
 import TodoService from '../Service/TodoService';
 
 
@@ -8,17 +7,14 @@ export default function TodoList() {
   //STATE
   const [TodoList, setTodoList] = useState([]);
   const [todo, setTodo] = useState([]);
-  const [id, setID] = useState(null);
-    
+
 
   //USE EFFECT
   useEffect(() => {
-    
+
     TodoService.showTodos()
       .then((response) => {
-        console.log(response.data);
         setTodoList(response.data);
-        localStorage.clear();
       })
       .catch((err) => { console.error(err); })
 
@@ -26,27 +22,27 @@ export default function TodoList() {
 
 
   // POST
-  const todoUpdate= async (event)=>{
+  const todoUpdate = async (event) => {
     // Browser'ın post için durmasını istiyorum
     event.preventDefault();
     const id = localStorage.getItem("todo_select_id")
     //NEW TODO OBJECT
-    const newTodo={
-        id: id,
-        todo,
+    const newTodo = {
+      id: id,
+      todo,
     }
     console.log(newTodo);
     // API 
     try {
-        const response= await TodoService.updateTodo(newTodo)
-        if (response.status===200){
-          //Changing the page to ()
-          window.location.assign("http://localhost:3000/");
-        }
-     } catch (err) {
+      const response = await TodoService.updateTodo(newTodo)
+      if (response.status === 200) {
+        //Changing the page to ()
+        window.location.assign("http://localhost:3000/");
+      }
+    } catch (err) {
       console.error(err);
-     }
-    }//END POST
+    }
+  }//END POST
 
   //CHECKING-UNCHECKING TO-DO
   const isCompleted = (id) => {
@@ -85,8 +81,8 @@ export default function TodoList() {
 
   //SELECT
   const setSelectTodo = (id) => {
-    localStorage.setItem("todo_select_id",id);
-    
+    localStorage.setItem("todo_select_id", id);
+
   }
 
   //RETURN
@@ -116,16 +112,16 @@ export default function TodoList() {
                   </label>
                 </td>
                 <td>
-                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => setSelectTodo(data.id)} >
-                    <i class="fa-solid fa-pen"></i>
+                  <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => setSelectTodo(data.id)} >
+                    <i className="fa-solid fa-pen"></i>
                   </button>
-                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h1 class="modal-title fs-5" id="exampleModalLabel"><b>To-Do Giriniz</b></h1>
+                  <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div className="modal-dialog">
+                      <div className="modal-content">
+                        <div className="modal-header">
+                          <h1 className="modal-title fs-5" id="exampleModalLabel"><b>To-Do Giriniz</b></h1>
                         </div>
-                        <div class="modal-body">
+                        <div className="modal-body">
                           <input
                             type="text"
                             className="form-control"
@@ -138,16 +134,16 @@ export default function TodoList() {
                             value={todo}
                           />
                         </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                          <button type="button" class="btn btn-primary" onClick={todoUpdate}> {('Confirm')}</button>
+                        <div className="modal-footer">
+                          <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          <button type="button" className="btn btn-primary" onClick={todoUpdate}> {('Confirm')}</button>
                         </div>
                       </div>
                     </div>
                   </div>
                 </td>
                 <td>
-                  <i class="fa-solid fa-trash text-danger" onClick={() => setDeleteTodo(data.id)}></i>
+                  <i className="fa-solid fa-trash text-danger" onClick={() => setDeleteTodo(data.id)}></i>
                 </td>
               </tr>
             )

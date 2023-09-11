@@ -2,7 +2,6 @@
 import React, { Component } from 'react'
 // ROUTER
 import { Navigate, Route, Routes } from 'react-router-dom';
-
 //TODO
 import Main from './Main';
 

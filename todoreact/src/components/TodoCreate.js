@@ -2,50 +2,48 @@ import React, { useState, useEffect } from 'react';
 import TodoService from '../Service/TodoService';
 
 
-function TodoCreate({}) {
+function TodoCreate({ }) {
 
 
-    //STATE
-    const [todoName, setTodoName] = useState("");
-    const [error, setError] = useState();
+  //STATE
+  const [todoName, setTodoName] = useState("");
+  const [error, setError] = useState();
 
-    useEffect(() => {
-        setError(undefined);
-    }, [todoName]);
+  useEffect(() => {
+    setError(undefined);
+  }, [todoName]);
 
-    const addTodo = async (event) => {
-        event.preventDefault();
+  const addTodo = async (event) => {
+    event.preventDefault();
 
-        // Yeni todo nesnesini burada oluşturmalısınız
-        const newTodo = {
-            "todo":todoName
-        };
-        console.log(newTodo);
+    // Yeni todo nesnesini burada oluşturmalısınız
+    const newTodo = {
+      "todo": todoName
+    };
+    console.log(newTodo);
 
-        //SERVICE
-        try {
-            const response = await TodoService.saveTodo(newTodo);
-            // Burada response ile ne yapmak istediğinizi ekleyebilirsiniz
-        } catch (err) {
-            setError(err.response.data.validationErrors);
-        }
-        
+    //SERVICE
+    try {
+      const response = await TodoService.saveTodo(newTodo);
+      // Burada response ile ne yapmak istediğinizi ekleyebilirsiniz
+      window.location.assign("http://localhost:3000/");
+    } catch (err) {
+      setError(err.response.data.validationErrors);
     }
 
-   
+  }
 
-
-     // CHANGE
+  // CHANGE
   const todoOnChange = (event) => {
     const { todoName, value } = event.target;
-    
+
 
     // onChange
     setTodoName(value)
   }
 
 
-    // RETURN
+  // RETURN
   return (
     <React.Fragment>
       <form>

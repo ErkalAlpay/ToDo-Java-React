@@ -6,7 +6,7 @@ class TodoService {
     //http://localhost:8080/create
     saveTodo(todo) {
 
-        return axios.post(`http://localhost:8080/create`,todo,)
+        return axios.post(`http://localhost:8080/create`, todo,)
     }
 
 
@@ -28,7 +28,7 @@ class TodoService {
 
     //Checkbox for completed TO-DO
     //http://localhost:8080/check
-    checkTodo(id){
+    checkTodo(id) {
 
         return axios.put(`http://localhost:8080/check/${id}`)
 
@@ -39,7 +39,7 @@ class TodoService {
     updateTodo(newTodo) {
 
 
-        return axios.post("http://localhost:8080/update",newTodo)
+        return axios.post("http://localhost:8080/update", newTodo)
 
 
     }

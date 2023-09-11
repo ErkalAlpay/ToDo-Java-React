@@ -37,7 +37,8 @@ export default function TodoUpdate() {
     try {
         const response= await TodoService.updateTodo(newTodo)
         if (response.status===200){
-          redirect("http://localhost:3000/");
+          //Changing the page to ()
+          window.location.assign("http://localhost:3000/");
         }
      } catch (err) {
       console.error(err);

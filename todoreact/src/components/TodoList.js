@@ -47,7 +47,7 @@ export default function TodoList() {
 
   //VIEW
   const getList = (() => {
-    TodoService.showTodos
+    TodoService.showTodos()
       .then((response) => {
         console.log(response.data);
         console.log(response.headers);

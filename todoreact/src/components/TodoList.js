@@ -8,7 +8,7 @@ export default function TodoList() {
   //STATE
   const [TodoList, setTodoList] = useState([]);
   const [todo, setTodo] = useState([]);
-  //const [id, setID] = useState(null);
+  const [id, setID] = useState(null);
     
 
   //USE EFFECT
@@ -18,6 +18,7 @@ export default function TodoList() {
       .then((response) => {
         console.log(response.data);
         setTodoList(response.data);
+        localStorage.clear();
       })
       .catch((err) => { console.error(err); })
 
@@ -87,6 +88,7 @@ export default function TodoList() {
   //SELECT
   const setSelectTodo = (id) => {
     localStorage.setItem("todo_select_id",id);
+    
   }
 
   //RETURN
@@ -116,7 +118,7 @@ export default function TodoList() {
                   </label>
                 </td>
                 <td>
-                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={setSelectTodo(data.id)}>
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"  >
                     <i class="fa-solid fa-pen"></i>
                   </button>
                   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

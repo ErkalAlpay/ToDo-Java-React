@@ -4,9 +4,6 @@ import React, { Component } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 //TODO
-import TodoList from './components/TodoList';
-import TodoCreate from './components/TodoCreate';
-import TodoUpdate from './components/TodoUpdate';
 import Main from './Main';
 
 export default class TodoRouter extends Component {
@@ -29,13 +26,6 @@ export default class TodoRouter extends Component {
             <>
                 <Routes>
                     <Route path='/' element={<Main />} />
-
-                    {/* TODO UPDATE  */}
-                    <Route path='/todo/update' element = {<TodoUpdate/>} />
-
-
-
-
                 </Routes>
             </>
         )//END RETURN

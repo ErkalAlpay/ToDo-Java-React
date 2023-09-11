@@ -78,8 +78,6 @@ export default function TodoList() {
   const getList = (() => {
     TodoService.showTodos()
       .then((response) => {
-        console.log(response.data);
-        console.log(response.headers);
         setTodoList(response.data);
       })
       .catch((err) => { console.error(err); })
@@ -118,7 +116,7 @@ export default function TodoList() {
                   </label>
                 </td>
                 <td>
-                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"  >
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => setSelectTodo(data.id)} >
                     <i class="fa-solid fa-pen"></i>
                   </button>
                   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

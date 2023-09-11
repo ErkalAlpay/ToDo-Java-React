@@ -1,4 +1,4 @@
-package com.erkalalpay.todotechcareer.Entity;
+package com.erkalalpay.todotechcareer.Base;
 
 import jakarta.persistence.*;
 import lombok.Data;

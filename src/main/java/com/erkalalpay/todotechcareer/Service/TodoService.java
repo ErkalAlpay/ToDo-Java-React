@@ -1,8 +1,8 @@
 package com.erkalalpay.todotechcareer.Service;
 
 import com.erkalalpay.todotechcareer.Bean.BeanConfig;
-import com.erkalalpay.todotechcareer.Dto.TodoDTO;
-import com.erkalalpay.todotechcareer.Entity.Todo;
+import com.erkalalpay.todotechcareer.Model.Dto.TodoDTO;
+import com.erkalalpay.todotechcareer.Model.Entity.Todo;
 import com.erkalalpay.todotechcareer.Repository.TodoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

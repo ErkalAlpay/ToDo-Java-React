@@ -1,8 +1,8 @@
-package com.erkalalpay.todotechcareer.Entity;
+package com.erkalalpay.todotechcareer.Model.Entity;
 
+import com.erkalalpay.todotechcareer.Base.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Data;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 

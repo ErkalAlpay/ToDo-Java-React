@@ -1,7 +1,7 @@
 package com.erkalalpay.todotechcareer.Controller;
 
-import com.erkalalpay.todotechcareer.Dto.TodoDTO;
-import com.erkalalpay.todotechcareer.Entity.Todo;
+import com.erkalalpay.todotechcareer.Model.Dto.TodoDTO;
+import com.erkalalpay.todotechcareer.Model.Entity.Todo;
 import com.erkalalpay.todotechcareer.Service.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

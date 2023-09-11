@@ -1,8 +1,7 @@
 package com.erkalalpay.todotechcareer.Repository;
 
-import com.erkalalpay.todotechcareer.Entity.Todo;
+import com.erkalalpay.todotechcareer.Model.Entity.Todo;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 

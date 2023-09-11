@@ -1,4 +1,4 @@
-package com.erkalalpay.todotechcareer.Dto;
+package com.erkalalpay.todotechcareer.Model.Dto;
 
 
 import lombok.Data;

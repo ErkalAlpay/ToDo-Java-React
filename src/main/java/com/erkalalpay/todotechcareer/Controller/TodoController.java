@@ -19,12 +19,12 @@ public class TodoController {
     //Creating TO-DO
     //http://localhost:8080/create
     @PostMapping("/create")
-    public void saveTodo(@RequestBody TodoDTO todo){
+    public void saveTodo(@RequestBody TodoDTO todo, @PathVariable String token){
         String todoString = todo.getTodo();
-        todoService.save(todoString);
-
+        todoService.save(todoString, token);
 
     }
+
     //Deleting TO-DO
     //http://localhost:8080/delete
     @PutMapping("/delete/{id}")
@@ -42,10 +42,10 @@ public class TodoController {
 
     //Check TO-DO
     //http://localhost:8080/check
-    @PutMapping("/check/{id}")
-    public TodoDTO checkTodo (@PathVariable Long id){
+    @PutMapping("/check/{id,token}")
+    public TodoDTO checkTodo (@PathVariable Long id, @PathVariable String token){
 
-        return todoService.checkTodo(id);
+        return todoService.checkTodo(id,token);
     }
 
 

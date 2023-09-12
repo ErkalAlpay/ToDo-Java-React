@@ -3,6 +3,7 @@ package com.erkalalpay.todotechcareer.Service;
 import com.erkalalpay.todotechcareer.Configuration.BeanConfig;
 import com.erkalalpay.todotechcareer.Model.Dto.TodoDTO;
 import com.erkalalpay.todotechcareer.Model.Entity.Todo;
+import com.erkalalpay.todotechcareer.Model.Entity.User;
 import com.erkalalpay.todotechcareer.Repository.TodoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,16 +15,18 @@ import java.util.*;
 @CrossOrigin("*")
 public class TodoService {
 
-    @Autowired
     private TodoRepository todoRepository;
-    @Autowired
     private BeanConfig beanConfig;
+    private JwtTokenService jwtTokenService;
+    private UserService userService;
 
 
     //TO-DO ADD/SAVE
-    public void save(String todotext){
-        Todo todo = new Todo();
-        todo.setTodo(todotext);
+    public void save(String todotext, String token){
+        String email = jwtTokenService.getTokenMail(token);
+        User user = userService.getUser(email);
+        Todo todo = new Todo(todotext);
+        todo.setUser(user);
         todoRepository.save(todo);
     }
 
@@ -39,7 +42,7 @@ public class TodoService {
     }
 
     //SINGLE TO-DO CHECKBOX ACTION
-    public TodoDTO checkTodo(Long id){
+    public TodoDTO checkTodo(Long id, String token){
         Todo todo = todoRepository.getById(id);
         todo.setIsCompleted(!todo.getIsCompleted());
         todo.setCheckedTime(new Date());

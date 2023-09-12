@@ -3,13 +3,17 @@ package com.erkalalpay.todotechcareer.Model.Entity;
 import com.erkalalpay.todotechcareer.Base.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
 
 @Data
 @Entity
+@NoArgsConstructor
 public class Todo extends BaseEntity {
+
+
     @Id
     @Column(name = "todo_id")
     private Long id;
@@ -23,4 +27,7 @@ public class Todo extends BaseEntity {
     @ManyToOne
     private User user;
 
+    public Todo(String todo) {
+        this.todo = todo;
+    }
 }

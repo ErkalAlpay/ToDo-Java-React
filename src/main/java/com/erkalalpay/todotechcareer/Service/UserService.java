@@ -2,16 +2,16 @@ package com.erkalalpay.todotechcareer.Service;
 
 import com.erkalalpay.todotechcareer.Base.BaseServiceImp;
 import com.erkalalpay.todotechcareer.Configuration.BeanConfig;
-import com.erkalalpay.todotechcareer.Model.Dto.TodoDTO;
 import com.erkalalpay.todotechcareer.Model.Dto.UserDTO;
 import com.erkalalpay.todotechcareer.Model.Entity.User;
+import com.erkalalpay.todotechcareer.Model.Request.RegisterFormRequest;
 import com.erkalalpay.todotechcareer.Repository.UserRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
 
 @Service
-public class UserService implements BaseServiceImp <UserDTO, User> {
+public class UserService {
 
     //Calls
     private BeanConfig beanConfig;
@@ -20,46 +20,32 @@ public class UserService implements BaseServiceImp <UserDTO, User> {
     private JwtTokenService jwtTokenService;
 
     //Functions
-
-    @Override
-    public UserDTO create(UserDTO userDTO) {
-        User user = beanConfig.modelMapperBean().map(userDTO, User.class);
+    public String create(RegisterFormRequest request) {
+        User user = beanConfig.modelMapperBean().map(request, User.class);
         String bcryptedPassword = beanConfig.bCryptPasswordEncoder().encode(user.getPassword());
         user.setPassword(bcryptedPassword);
         userRepository.save(user);
-        return null;
+        return jwtTokenService.generateToken(request.getEmail());
     }
     public List todoList(String token){
         User user = userRepository.findByUseremail(jwtTokenService.getTokenMail(token));
         return user.getTodoList();
     }
-    public User getUser (String email){
+    public User findByEmail(String email){
         return userRepository.findByUseremail(email);
     }
-    @Override
+    public boolean findByEmailForDuplacite(String email){
+        if (findByEmail(email) == null){
+            return true;
+        }else return false;
+    }
     public UserDTO entityToDto(User user) {
         UserDTO userDTO = beanConfig.modelMapperBean().map(user, UserDTO.class);
         return userDTO;
     }
-    @Override
     public User dtoToEntity(UserDTO userDTO) {
         User user = beanConfig.modelMapperBean().map(userDTO, User.class);
         return user;
     }
-    @Override
-    public List list() {
-        return null;
-    }
-    @Override
-    public UserDTO findById(Long id) {
-        return null;
-    }
-    @Override
-    public UserDTO update(Long id, UserDTO userDTO) {
-        return null;
-    }
-    @Override
-    public UserDTO deleteById(Long id) {
-        return null;
-    }
+
 }

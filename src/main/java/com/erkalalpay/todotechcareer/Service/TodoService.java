@@ -5,7 +5,6 @@ import com.erkalalpay.todotechcareer.Model.Dto.TodoDTO;
 import com.erkalalpay.todotechcareer.Model.Entity.Todo;
 import com.erkalalpay.todotechcareer.Model.Entity.User;
 import com.erkalalpay.todotechcareer.Repository.TodoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
@@ -24,7 +23,7 @@ public class TodoService {
     //TO-DO ADD/SAVE
     public void save(String todotext, String token){
         String email = jwtTokenService.getTokenMail(token);
-        User user = userService.getUser(email);
+        User user = userService.findByEmail(email);
         Todo todo = new Todo(todotext);
         todo.setUser(user);
         todoRepository.save(todo);

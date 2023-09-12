@@ -24,5 +24,8 @@ public abstract class BaseEntity {
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedTime;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date deletedTime;
+
 
 }

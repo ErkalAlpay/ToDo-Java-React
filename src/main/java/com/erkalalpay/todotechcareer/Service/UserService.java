@@ -1,23 +1,26 @@
 package com.erkalalpay.todotechcareer.Service;
 
 import com.erkalalpay.todotechcareer.Base.BaseServiceImp;
+import com.erkalalpay.todotechcareer.Model.Dto.UserDTO;
+import com.erkalalpay.todotechcareer.Model.Entity.User;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
+
 @Service
-public class UserService implements BaseServiceImp {
+public class UserService implements BaseServiceImp <UserDTO, User> {
     @Override
-    public Object entityToDto(Object o) {
+    public UserDTO entityToDto(User user) {
         return null;
     }
 
     @Override
-    public Object dtoToEntity(Object o) {
+    public User dtoToEntity(UserDTO userDTO) {
         return null;
     }
 
     @Override
-    public Object create(Object o) {
+    public UserDTO create(UserDTO userDTO) {
         return null;
     }
 
@@ -27,17 +30,17 @@ public class UserService implements BaseServiceImp {
     }
 
     @Override
-    public Object findById(Long id) {
+    public UserDTO findById(Long id) {
         return null;
     }
 
     @Override
-    public Object update(Long id, Object o) {
+    public UserDTO update(Long id, UserDTO userDTO) {
         return null;
     }
 
     @Override
-    public Object deleteById(Long id) {
+    public UserDTO deleteById(Long id) {
         return null;
     }
 }

@@ -1,5 +1,8 @@
 package com.erkalalpay.todotechcareer.Base;
 
+import com.erkalalpay.todotechcareer.Model.Dto.UserDTO;
+import com.erkalalpay.todotechcareer.Model.Entity.User;
+
 import java.util.List;
 
 // D: Dto
@@ -13,6 +16,12 @@ public interface BaseServiceImp <D, E> {
     // C R U D
     // CREATE
     public D create(D d);
+
+    Object entityToDto(User user);
+
+    Object dtoToEntity(UserDTO userDTO);
+
+    Object create(UserDTO userDTO);
 
     // LIST
     public List<D> list();

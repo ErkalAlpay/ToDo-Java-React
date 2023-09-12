@@ -42,10 +42,10 @@ public class TodoController {
 
     //Check TO-DO
     //http://localhost:8080/check
-    @PutMapping("/check/{id,token}")
-    public TodoDTO checkTodo (@PathVariable Long id, @PathVariable String token){
+    @PutMapping("/check/{id}")
+    public TodoDTO checkTodo (@PathVariable Long id){
 
-        return todoService.checkTodo(id,token);
+        return todoService.checkTodo(id);
     }
 
 

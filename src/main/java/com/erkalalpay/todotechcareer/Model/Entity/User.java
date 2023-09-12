@@ -24,6 +24,6 @@ public class User extends BaseEntity {
     private String password;
 
     @OneToMany(mappedBy = "user")
-    private List<Todo> todolar = new ArrayList<>();
+    private List<Todo> todoList = new ArrayList<>();
 
 }

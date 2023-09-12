@@ -42,7 +42,7 @@ public class TodoService {
     }
 
     //SINGLE TO-DO CHECKBOX ACTION
-    public TodoDTO checkTodo(Long id, String token){
+    public TodoDTO checkTodo(Long id){
         Todo todo = todoRepository.getById(id);
         todo.setIsCompleted(!todo.getIsCompleted());
         todo.setCheckedTime(new Date());

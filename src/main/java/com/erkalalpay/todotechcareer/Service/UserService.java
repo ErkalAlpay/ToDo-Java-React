@@ -17,8 +17,25 @@ public class UserService implements BaseServiceImp <UserDTO, User> {
     private BeanConfig beanConfig;
 
     private UserRepository userRepository;
+    private JwtTokenService jwtTokenService;
 
     //Functions
+
+    @Override
+    public UserDTO create(UserDTO userDTO) {
+        User user = beanConfig.modelMapperBean().map(userDTO, User.class);
+        String bcryptedPassword = beanConfig.bCryptPasswordEncoder().encode(user.getPassword());
+        user.setPassword(bcryptedPassword);
+        userRepository.save(user);
+        return null;
+    }
+    public List todoList(String token){
+        User user = userRepository.findByUseremail(jwtTokenService.getTokenMail(token));
+        return user.getTodoList();
+    }
+    public User getUser (String email){
+        return userRepository.findByUseremail(email);
+    }
     @Override
     public UserDTO entityToDto(User user) {
         UserDTO userDTO = beanConfig.modelMapperBean().map(user, UserDTO.class);
@@ -30,19 +47,8 @@ public class UserService implements BaseServiceImp <UserDTO, User> {
         return user;
     }
     @Override
-    public UserDTO create(UserDTO userDTO) {
-        User user = beanConfig.modelMapperBean().map(userDTO, User.class);
-        String bcryptedPassword = beanConfig.bCryptPasswordEncoder().encode(user.getPassword());
-        user.setPassword(bcryptedPassword);
-        userRepository.save(user);
-        return null;
-    }
-    @Override
     public List list() {
         return null;
-    }
-    public User getUser (String email){
-        return userRepository.findByUseremail(email);
     }
     @Override
     public UserDTO findById(Long id) {

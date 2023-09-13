@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin("*")
 public class UserController {
 
     private UserService userService;
@@ -28,6 +28,11 @@ public class UserController {
     public LoginResponse userLogin (@RequestBody LoginRequest loginRequest){
         LoginResponse loginResponse = userService.login(loginRequest);
         return loginResponse;
+    }
+
+    @PostMapping("/deneme")
+    public void deneme(@RequestBody LoginRequest loginRequest){
+        System.out.println(loginRequest.toString());
     }
 
 }

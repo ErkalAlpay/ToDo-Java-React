@@ -30,6 +30,8 @@ public class UserService {
         return jwtTokenService.generateToken(request.getEmail());
     }
 
+    
+
     public LoginResponse login(LoginRequest loginRequest){
         if(findByEmailForDuplacite(loginRequest.getEmail())){
             User user = findByEmail(loginRequest.getEmail());

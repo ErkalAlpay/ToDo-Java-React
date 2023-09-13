@@ -1,19 +1,33 @@
 package com.erkalalpay.todotechcareer.Controller;
 
+import com.erkalalpay.todotechcareer.Model.Dto.LoginResponse;
+import com.erkalalpay.todotechcareer.Model.Request.LoginRequest;
 import com.erkalalpay.todotechcareer.Model.Request.RegisterFormRequest;
 import com.erkalalpay.todotechcareer.Service.UserService;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
+@CrossOrigin("http://localhost:3000")
 public class UserController {
 
     private UserService userService;
 
 
-    public String userRegister(RegisterFormRequest request) {
-        if (userService.findByEmailForDuplacite(request.getEmail())) {
-        String token = userService.create(request);
-        return token;
-        }else return null;
+    @PostMapping("/user/register")
+    public void userRegister(@RequestBody RegisterFormRequest request) {
+        if (!userService.findByEmailForDuplacite(request.getEmail())) {
+        userService.create(request);
+        System.out.println("Kullanıcı başarıyla kayıt oldu");
+        }else System.out.println("Hata oluştu, tekrar deneyiniz");
     }
+
+    @PostMapping("/login")
+    public LoginResponse userLogin (@RequestBody LoginRequest loginRequest){
+        LoginResponse loginResponse = userService.login(loginRequest);
+        return loginResponse;
+    }
+
 }

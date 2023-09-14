@@ -23,6 +23,9 @@ public class User extends BaseEntity {
     @Column
     private String password;
 
+    @Column
+    private Boolean isLogged = false;
+
     @OneToMany(mappedBy = "user")
     private List<Todo> todoList = new ArrayList<>();
 

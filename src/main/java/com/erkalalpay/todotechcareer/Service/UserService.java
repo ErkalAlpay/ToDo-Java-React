@@ -2,6 +2,7 @@ package com.erkalalpay.todotechcareer.Service;
 
 
 import com.erkalalpay.todotechcareer.Configuration.BeanConfig;
+import com.erkalalpay.todotechcareer.Helper.MailHelper;
 import com.erkalalpay.todotechcareer.Model.Dto.LoginResponse;
 import com.erkalalpay.todotechcareer.Model.Dto.UserDTO;
 import com.erkalalpay.todotechcareer.Model.Entity.User;
@@ -23,6 +24,8 @@ public class UserService {
     private UserRepository userRepository;
     @Autowired
     private JwtTokenService jwtTokenService;
+    @Autowired
+    private MailHelper mailHelper;
 
     //Functions
     public String create(RegisterFormRequest request) {
@@ -32,6 +35,7 @@ public class UserService {
         String bcryptedPassword = beanConfig.bCryptPasswordEncoder().encode(user.getPassword());
         user.setPassword(bcryptedPassword);
         userRepository.save(user);
+        mailHelper.serviceRegister(request.getEmail());
         return jwtTokenService.generateToken(request.getEmail());
     }
 
@@ -43,6 +47,7 @@ public class UserService {
             LoginResponse loginResponse = new LoginResponse(null);
             if(beanConfig.bCryptPasswordEncoder().matches(loginRequest.getPassword(), user.getPassword())){
             loginResponse.setToken(jwtTokenService.generateToken(loginRequest.getEmail()));
+            user.setIsLogged(true);
             } else System.out.println("Kullanıcı adı veya şifre hatalı");
             return loginResponse;
         }else System.out.println("Böyle bir kullanıcı bulunmamaktadır");

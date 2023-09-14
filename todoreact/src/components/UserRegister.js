@@ -1,21 +1,59 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 
 export default function UserRegister() {
-    
+    //STATE
+    const [registerEmail, setRegisterEmail] = useState("");
+    const [registerPassword, setRegisterPassword] = useState("");
+    const [registerPassword2, setRegisterPassword2] = useState("");
+    const [error, setError] = useState();
+
+    useEffect(() => {
+        setError(undefined);
+    }, [registerEmail], [registerPassword], [registerPassword2]);
+
+    const registerUser = async (event) => {
+        event.preventDefault();
+
+        // Creating User
+        if (registerPassword == registerPassword2) {
+            const newUser = {
+                "email": registerEmail,
+                "password": registerPassword
+            };
+            console.log(newUser);
+
+            //SERVICE
+            try {
+                //const response = await TodoService.saveTodo(newTodo);
+                // Burada response ile ne yapmak istediğinizi ekleyebilirsiniz
+                window.location.assign("http://localhost:3000/");
+            } catch (err) {
+                setError(err.response.data.validationErrors);
+            }
+        } else setError("Girdiğiniz şifrelet aynı değil!");
+
+    }
 
 
+    // CHANGE
+    const emailOnChange = (event) => {
+        const { registerEmail, value } = event.target;
+        // onChange
+        setRegisterEmail(value)
+        
+    }
 
+    const passwordOnChange = (event) => {
+        const { registerPassword, value } = event.target;
+        // onChange
+        setRegisterPassword(value)
+    }
 
-
-
-
-
-
-
-
-
-
-
+    const password2OnChange = (event) => {
+        const { registerPassword2, value } = event.target;
+        // onChange
+        setRegisterPassword2(value)
+    }
 
     return (
         <section class="vh-100" styles="background-color: #eee;">
@@ -34,7 +72,7 @@ export default function UserRegister() {
                                             <div class="d-flex flex-row align-items-center mb-4">
                                                 <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                                                 <div class="form-outline flex-fill mb-0">
-                                                    <input type="email" id="form3Example3c" class="form-control" />
+                                                    <input type="email" id="form3Example3c" class="form-control" onChange={emailOnChange} />
                                                     <label class="form-label" for="form3Example3c">Your Email</label>
                                                 </div>
                                             </div>
@@ -42,7 +80,7 @@ export default function UserRegister() {
                                             <div class="d-flex flex-row align-items-center mb-4">
                                                 <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                                                 <div class="form-outline flex-fill mb-0">
-                                                    <input type="password" id="form3Example4c" class="form-control" />
+                                                    <input type="password" id="form3Example4c" class="form-control" onChange={passwordOnChange} />
                                                     <label class="form-label" for="form3Example4c">Password</label>
                                                 </div>
                                             </div>
@@ -50,7 +88,7 @@ export default function UserRegister() {
                                             <div class="d-flex flex-row align-items-center mb-4">
                                                 <i class="fas fa-key fa-lg me-3 fa-fw"></i>
                                                 <div class="form-outline flex-fill mb-0">
-                                                    <input type="password" id="form3Example4cd" class="form-control" />
+                                                    <input type="password" id="form3Example4cd" class="form-control" onChange={password2OnChange} />
                                                     <label class="form-label" for="form3Example4cd">Repeat your password</label>
                                                 </div>
                                             </div>

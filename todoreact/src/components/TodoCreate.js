@@ -36,8 +36,6 @@ function TodoCreate({ }) {
   // CHANGE
   const todoOnChange = (event) => {
     const { todoName, value } = event.target;
-
-
     // onChange
     setTodoName(value)
   }

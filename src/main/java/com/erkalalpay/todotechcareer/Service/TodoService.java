@@ -5,6 +5,7 @@ import com.erkalalpay.todotechcareer.Model.Dto.TodoDTO;
 import com.erkalalpay.todotechcareer.Model.Entity.Todo;
 import com.erkalalpay.todotechcareer.Model.Entity.User;
 import com.erkalalpay.todotechcareer.Repository.TodoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
@@ -14,9 +15,13 @@ import java.util.*;
 @CrossOrigin("*")
 public class TodoService {
 
+    @Autowired
     private TodoRepository todoRepository;
+    @Autowired
     private BeanConfig beanConfig;
+    @Autowired
     private JwtTokenService jwtTokenService;
+    @Autowired
     private UserService userService;
 
 

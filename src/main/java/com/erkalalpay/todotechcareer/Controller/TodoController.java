@@ -17,10 +17,11 @@ public class TodoController {
     private TodoService todoService;
 
     //Creating TO-DO
-    //http://localhost:8080/create
-    @PostMapping("/create")
-    public void saveTodo(@RequestBody TodoDTO todo, @PathVariable String token){
+    //http://localhost:8080/todo/create
+    @PostMapping("/todo/create")
+    public void saveTodo(@RequestBody TodoDTO todo){
         String todoString = todo.getTodo();
+        String token = todo.getToken();
         todoService.save(todoString, token);
 
     }

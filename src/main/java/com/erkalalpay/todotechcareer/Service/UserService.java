@@ -42,12 +42,13 @@ public class UserService {
     
 
     public LoginResponse login(LoginRequest loginRequest){
-        if(!findByEmailForDuplacite(loginRequest.getEmail())){
+        if(!findByEmailForExisting(loginRequest.getEmail())){
             User user = findByEmail(loginRequest.getEmail());
             LoginResponse loginResponse = new LoginResponse(null);
             if(beanConfig.bCryptPasswordEncoder().matches(loginRequest.getPassword(), user.getPassword())){
             loginResponse.setToken(jwtTokenService.generateToken(loginRequest.getEmail()));
             user.setIsLogged(true);
+            userRepository.save(user);
             } else System.out.println("Kullanıcı adı veya şifre hatalı");
             return loginResponse;
         }else System.out.println("Böyle bir kullanıcı bulunmamaktadır");
@@ -66,10 +67,10 @@ public class UserService {
     }
 
     //Checking users email in database for existing
-    public boolean findByEmailForDuplacite(String email){
+    public boolean findByEmailForExisting(String email){
         if (findByEmail(email) == null){
             return true; //this email is not existed
-        }else System.out.println("Bu email adresi daha önce kayıt olmuş");
+        }else System.out.println("Böyle bir mail adresi databasede bulunmaktadır");
         return false; //this email is existed
     }
     public UserDTO entityToDto(User user) {

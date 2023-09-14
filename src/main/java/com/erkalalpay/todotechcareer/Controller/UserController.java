@@ -1,7 +1,6 @@
 package com.erkalalpay.todotechcareer.Controller;
 
 import com.erkalalpay.todotechcareer.Model.Dto.LoginResponse;
-import com.erkalalpay.todotechcareer.Model.Entity.User;
 import com.erkalalpay.todotechcareer.Model.Request.LoginRequest;
 import com.erkalalpay.todotechcareer.Model.Request.RegisterFormRequest;
 import com.erkalalpay.todotechcareer.Service.UserService;
@@ -21,7 +20,7 @@ public class UserController {
 
     @PostMapping("/user/register")
     public void userRegister(@RequestBody RegisterFormRequest request) {
-        if (userService.findByEmailForDuplacite(request.getEmail())) {
+        if (userService.findByEmailForExisting(request.getEmail())) {
         userService.create(request);
         System.out.println("Kullanıcı başarıyla kayıt oldu");
         }else System.out.println("Hata oluştu, tekrar deneyiniz");

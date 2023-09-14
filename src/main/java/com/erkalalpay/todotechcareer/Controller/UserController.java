@@ -26,15 +26,11 @@ public class UserController {
         }else System.out.println("Hata oluştu, tekrar deneyiniz");
     }
 
-    @PostMapping("/login")
+    @PostMapping("/user/login")
     public LoginResponse userLogin (@RequestBody LoginRequest loginRequest){
         LoginResponse loginResponse = userService.login(loginRequest);
         return loginResponse;
     }
 
-    @PostMapping("/deneme")
-    public void deneme(@RequestBody LoginRequest loginRequest){
-        System.out.println(loginRequest.toString());
-    }
 
 }

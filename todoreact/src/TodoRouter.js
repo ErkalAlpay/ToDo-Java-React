@@ -4,6 +4,8 @@ import React, { Component } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom';
 //TODO
 import Main from './Main';
+import UserRegister from './components/UserRegister';
+import UserLogin from './components/UserLogin';
 
 export default class TodoRouter extends Component {
 
@@ -25,6 +27,8 @@ export default class TodoRouter extends Component {
             <>
                 <Routes>
                     <Route path='/' element={<Main />} />
+                    <Route path='/register' element={<UserRegister/>} />
+                    <Route path='/login' element={<UserLogin/>} />
                 </Routes>
             </>
         )//END RETURN

@@ -2,7 +2,7 @@
 class UserService{
 
 
-    // @PostMapping("/user/register")
+    // @PostMapping("http://localhost:8080/user/register")
     // public void userRegister(@RequestBody RegisterFormRequest request) {
     //     if (userService.findByEmailForExisting(request.getEmail())) {
     //     userService.create(request);
@@ -13,7 +13,7 @@ class UserService{
 
     
 
-    // @PostMapping("/user/login")
+    // @PostMapping("http://localhost:8080/user/login")
     // public LoginResponse userLogin (@RequestBody LoginRequest loginRequest){
     //     LoginResponse loginResponse = userService.login(loginRequest);
     //     return loginResponse;

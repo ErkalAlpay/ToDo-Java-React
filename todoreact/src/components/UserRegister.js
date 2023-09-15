@@ -12,7 +12,7 @@ export default function UserRegister() {
 
     useEffect(() => {
         setError(undefined);
-    }, [registerPassword2]);
+    },[registerEmail], [registerPassword], [registerPassword2]);
 
     const userService = new UserService();
 

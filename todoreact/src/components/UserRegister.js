@@ -31,7 +31,7 @@ export default function UserRegister() {
             try {
                 const response = await userService.userRegister(request);
             //Burada response ile ne yapmak istediğinizi ekleyebilirsiniz
-               
+              localStorage.setItem(response.data);
             } catch (err) {
                 setError("");
             }

@@ -1,5 +1,6 @@
+import axios from "axios";
 
-class UserService{
+class UserService {
 
 
     // @PostMapping("http://localhost:8080/user/register")
@@ -10,8 +11,12 @@ class UserService{
     //     }else System.out.println("Hata oluştu, tekrar deneyiniz");
     // }
 
+    userRegister(user){
 
-    
+       return axios.post(`http://localhost:8080/user/register`,{user});
+
+    }
+
 
     // @PostMapping("http://localhost:8080/user/login")
     // public LoginResponse userLogin (@RequestBody LoginRequest loginRequest){
@@ -19,5 +24,10 @@ class UserService{
     //     return loginResponse;
     // }
 
+    userLogin(user){
+        return axios.post(`http://localhost:8080/user/login`,{user});
+    }
+
 
 }
+export default UserService;

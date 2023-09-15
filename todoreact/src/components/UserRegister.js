@@ -3,33 +3,37 @@ import UserService from '../Service/UserService';
 
 export default function UserRegister() {
     //STATE
-    const [registerEmail, setRegisterEmail] = useState("");
-    const [registerPassword, setRegisterPassword] = useState("");
-    const [registerPassword2, setRegisterPassword2] = useState("");
+    const [registerEmail, setRegisterEmail] = useState();
+    const [registerPassword, setRegisterPassword] = useState();
+    const [registerPassword2, setRegisterPassword2] = useState();
     const [error, setError] = useState();
+
+    
 
     useEffect(() => {
         setError(undefined);
     }, [registerEmail], [registerPassword], [registerPassword2]);
+
+    const userService = new UserService();
 
     const registerUser = async (event) => {
         event.preventDefault();
 
         // Creating User
         if (registerPassword == registerPassword2) {
-            const newUser = {
+            const request = {
                 "email": registerEmail,
                 "password": registerPassword
             };
-            console.log(newUser);
+            console.log(request);
 
             //SERVICE
             try {
-                const response = await UserService.UserRegister(newUser);
+                const response = await userService.userRegister(request);
             //Burada response ile ne yapmak istediğinizi ekleyebilirsiniz
                
             } catch (err) {
-                setError(err.response.data.validationErrors);
+                setError("");
             }
         } else console.log("Girdiğiniz şifrelet aynı değil!");
 

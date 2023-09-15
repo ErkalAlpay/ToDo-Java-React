@@ -35,7 +35,7 @@ public class UserService {
         String bcryptedPassword = beanConfig.bCryptPasswordEncoder().encode(user.getPassword());
         user.setPassword(bcryptedPassword);
         userRepository.save(user);
-        mailHelper.serviceRegister(request.getEmail());
+        //mailHelper.serviceRegister(request.getEmail());
         return jwtTokenService.generateToken(request.getEmail());
     }
 

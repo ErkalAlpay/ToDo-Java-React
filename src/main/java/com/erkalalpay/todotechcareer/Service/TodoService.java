@@ -60,11 +60,13 @@ public class TodoService {
 
     //DELETE
     public void deleteTodo (long id){
+
         todoRepository.deleteById(id);
     }
+
     //FINDING ALL TO-DO's AND PUTING ON LIST
-    public List collectTodos (){
-        List<Todo> todos = todoRepository.findAll();
+    public List collectTodos (Long id){
+        List<Todo> todos = todoRepository.findByUserId(id);
         return todos;
     }
 

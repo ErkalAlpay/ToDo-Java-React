@@ -24,7 +24,7 @@ export default function UserLogin() {
 
             //SERVICE
             try {
-                const response = await userService.userLogin(request);
+                const response = await userService.userLogin(request)
                 console.log(response.data);
                 localStorage.setItem("user_token", response.data);
             //Burada response ile ne yapmak istediğinizi ekleyebilirsiniz

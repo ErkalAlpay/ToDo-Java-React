@@ -3,16 +3,16 @@ import UserService from '../Service/UserService';
 
 export default function UserRegister() {
     //STATE
-    const [registerEmail, setRegisterEmail] = useState();
-    const [registerPassword, setRegisterPassword] = useState();
-    const [registerPassword2, setRegisterPassword2] = useState();
+    const [registerEmail, setRegisterEmail] = useState("");
+    const [registerPassword, setRegisterPassword] = useState("");
+    const [registerPassword2, setRegisterPassword2] = useState("");
     const [error, setError] = useState();
 
     
 
     useEffect(() => {
         setError(undefined);
-    }, [registerEmail], [registerPassword], [registerPassword2]);
+    }, [registerPassword2]);
 
     const userService = new UserService();
 

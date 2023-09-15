@@ -24,8 +24,8 @@ class UserService {
     //     return loginResponse;
     // }
 
-    userLogin(user){
-        return axios.post(`http://localhost:8080/user/login`,{user});
+    userLogin(request){
+        return axios.post(`http://localhost:8080/user/login`,request);
     }
 
 

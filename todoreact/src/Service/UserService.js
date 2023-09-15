@@ -11,9 +11,9 @@ class UserService {
     //     }else System.out.println("Hata oluştu, tekrar deneyiniz");
     // }
 
-    userRegister(user){
+    userRegister(request){
 
-       return axios.post(`http://localhost:8080/user/register`,{user});
+       return axios.post(`http://localhost:8080/user/register`,request);
 
     }
 

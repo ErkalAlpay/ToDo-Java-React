@@ -47,9 +47,9 @@ class TodoService {
     //Selecting all TO-DO's
     //http://localhost:8080/
 
-    showTodos() {
+    showTodos(tokenjson) {
 
-        return axios.get(`http://localhost:8080/`)
+        return axios.get(`http://localhost:8080/todo/show`, tokenjson)
     }
 
 

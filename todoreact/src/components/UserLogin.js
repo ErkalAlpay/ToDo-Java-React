@@ -25,11 +25,11 @@ export default function UserLogin() {
             //SERVICE
             try {
                 const response = await userService.userLogin(request);
-                console.log(response);
+                console.log(response.data);
             //Burada response ile ne yapmak istediğinizi ekleyebilirsiniz
                
             } catch (err) {
-                setError("");
+                setError(err);
             }
     }
 

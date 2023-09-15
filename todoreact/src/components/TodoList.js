@@ -8,11 +8,12 @@ export default function TodoList() {
   const [TodoList, setTodoList] = useState([]);
   const [todo, setTodo] = useState([]);
 
+  
 
   //USE EFFECT
   useEffect(() => {
-
-    TodoService.showTodos()
+    const userToken = { token : localStorage.getItem("user_token") }
+    TodoService.showTodos(userToken)
       .then((response) => {
         setTodoList(response.data);
       })
@@ -89,7 +90,7 @@ export default function TodoList() {
   return (
     <>
       <h1 className="text-center display-4"><b>To-Do's</b></h1>
-      <table class="table">
+      <table className="table">
         <thead>
           <tr>
             <th>To-Do's</th>

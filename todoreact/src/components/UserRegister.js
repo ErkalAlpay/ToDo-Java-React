@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import UserService from '../Service/UserService';
 
 export default function UserRegister() {
     //STATE
@@ -24,18 +25,24 @@ export default function UserRegister() {
 
             //SERVICE
             try {
-                //const response = await TodoService.saveTodo(newTodo);
-                // Burada response ile ne yapmak istediğinizi ekleyebilirsiniz
-               // window.location.assign("http://localhost:3000/");
+                const response = await UserService.UserRegister(newUser);
+            //Burada response ile ne yapmak istediğinizi ekleyebilirsiniz
+               
             } catch (err) {
                 setError(err.response.data.validationErrors);
             }
         } else console.log("Girdiğiniz şifrelet aynı değil!");
 
     }
+    //FUNCTION
+    function passwordMisMatchNotification(){
+        if(registerPassword != registerPassword2){
+            document.getElementById("passwordDoesntmatch").textContent = "Şifreler eşleşmiyor! Lütfen kontrol ediniz";
+        }
+    }
 
 
-    // CHANGE
+    // EVENT LISTENERS
     const emailOnChange = (event) => {
         const { registerEmail, value } = event.target;
         // onChange
@@ -53,6 +60,12 @@ export default function UserRegister() {
         const { registerPassword2, value } = event.target;
         // onChange
         setRegisterPassword2(value)
+    }
+
+    const onCheck = (event) => {
+        const checked = event.target.value;
+        console.log(checked);
+        console.log("çalışıyor");
     }
 
     return (
@@ -90,11 +103,12 @@ export default function UserRegister() {
                                                 <div className="form-outline flex-fill mb-0">
                                                     <input type="password" id="form3Example4cd" className="form-control" onChange={password2OnChange} />
                                                     <label className="form-label" htmlFor="form3Example4cd">Repeat your password</label>
+                                                   {/*  <p id="passwordDoesntmatch" styles="color: red;"></p> */}
                                                 </div>
                                             </div>
 
                                             <div className="form-check d-flex justify-content-center mb-5">
-                                                <input className="form-check-input me-2" type="checkbox" value="" id="form2Example3c" />
+                                                <input className="form-check-input me-2" type="checkbox" value="" onClick={onCheck} id="form2Example3c" />
                                                 <label className="form-check-label" htmlFor="form2Example3">
                                                     I agree all statements in <a href="#!">Terms of service</a>
                                                 </label>

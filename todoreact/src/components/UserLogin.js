@@ -27,7 +27,9 @@ export default function UserLogin() {
                 const response = await userService.userLogin(request);
                 console.log(response.data);
             //Burada response ile ne yapmak istediğinizi ekleyebilirsiniz
-               
+            if(response.status == 200){
+                window.location.assign("http://localhost:3000/");
+               }
             } catch (err) {
                 setError(err);
             }

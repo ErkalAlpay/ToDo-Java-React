@@ -71,7 +71,7 @@ public class TodoController {
 
     //Selecting all TO-DO's
     //http://localhost:8080/
-    @GetMapping("/todo/show")
+    @PostMapping("/todo/show")
     public List<TodoDTO> showTodos (@RequestBody LoginResponse loginResponse){
         String userEmail = jwtTokenService.getTokenMail(loginResponse.getToken());
         User user = userService.findByEmail(userEmail);

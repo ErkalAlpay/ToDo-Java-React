@@ -6,7 +6,7 @@ class TodoService {
     //http://localhost:8080/create
     saveTodo(todo) {
 
-        return axios.post(`http://localhost:8080/create`, todo,)
+        return axios.post(`http://localhost:8080/todo/create`, todo,)
     }
 
 

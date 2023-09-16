@@ -26,7 +26,7 @@ export default function UserLogin() {
             try {
                 const response = await userService.userLogin(request)
                 console.log(response.data);
-                localStorage.setItem("user_token", response.data);
+                localStorage.setItem("user_token", response.data.token);
             //Burada response ile ne yapmak istediğinizi ekleyebilirsiniz
             if(response.status == 200){
                 window.location.assign("http://localhost:3000/");

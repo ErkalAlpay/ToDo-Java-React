@@ -49,7 +49,7 @@ class TodoService {
 
     showTodos(tokenjson) {
 
-        return axios.get(`http://localhost:8080/todo/show`, tokenjson)
+        return axios.post(`http://localhost:8080/todo/show`, tokenjson)
     }
 
 

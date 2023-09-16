@@ -18,7 +18,8 @@ function TodoCreate({ }) {
 
     // Yeni todo nesnesini burada oluşturmalısınız
     const newTodo = {
-      "todo": todoName
+      "todo": todoName,
+      "token": localStorage.getItem("user_token")
     };
     console.log(newTodo);
 

@@ -74,7 +74,7 @@ export default function TodoList() {
 
   //VIEW
   const getList = (() => {
-    TodoService.showTodos()
+    TodoService.showTodos({ token : localStorage.getItem("user_token") })
       .then((response) => {
         setTodoList(response.data);
       })

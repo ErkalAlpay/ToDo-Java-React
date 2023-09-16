@@ -26,7 +26,7 @@ export default function UserRegister() {
                 "password": registerPassword
             };
             console.log(request);
-
+            localStorage.clear();
             //SERVICE
             try {
                 const response = await userService.userRegister(request);

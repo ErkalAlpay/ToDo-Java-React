@@ -28,7 +28,9 @@ public class UserService {
     private MailHelper mailHelper;
 
     //Functions
-    public String create(RegisterFormRequest request) {
+
+    //User Register
+    public void create(RegisterFormRequest request) {
         User user = new User();
         user.setUseremail(request.getEmail());
         user.setPassword(request.getPassword());
@@ -36,16 +38,18 @@ public class UserService {
         user.setPassword(bcryptedPassword);
         userRepository.save(user);
         //mailHelper.serviceRegister(request.getEmail());
-        return jwtTokenService.generateToken(request.getEmail());
     }
 
-    
-
+    //User login
     public LoginResponse login(LoginRequest loginRequest){
+        //Checking email for existed
         if(!findByEmailForExisting(loginRequest.getEmail())){
+            //If not existed find the user by email
             User user = findByEmail(loginRequest.getEmail());
             LoginResponse loginResponse = new LoginResponse(null);
+            //Password control
             if(beanConfig.bCryptPasswordEncoder().matches(loginRequest.getPassword(), user.getPassword())){
+            //If the password matches the password in the database, creat token and give user
             loginResponse.setToken(jwtTokenService.generateToken(loginRequest.getEmail()));
             user.setIsLogged(true);
             userRepository.save(user);
@@ -54,6 +58,8 @@ public class UserService {
         }else System.out.println("Böyle bir kullanıcı bulunmamaktadır");
         return null;
     }
+    
+    //Find and get to-do list from token email
     public List todoList(String token){
         User user = userRepository.findByUseremail(jwtTokenService.getTokenMail(token));
         return user.getTodoList();

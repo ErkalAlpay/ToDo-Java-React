@@ -13,6 +13,7 @@ export default function TodoList() {
   //USE EFFECT
   useEffect(() => {
     const userToken = { token : localStorage.getItem("user_token") }
+    console.log(userToken);
     TodoService.showTodos(userToken)
       .then((response) => {
         setTodoList(response.data);
@@ -108,7 +109,7 @@ export default function TodoList() {
                 <td>{data.todo}</td>
                 <td>
                   <input type='checkbox' id="abc" checked={data.isCompleted} onChange={() => isCompleted(data.id)} />
-                  <label for="abc">
+                  <label htmlFor="abc">
                     {(data.isCompleted) ? "Tamamlandı" : "Tamamlanmadı"}
                   </label>
                 </td>
@@ -116,7 +117,7 @@ export default function TodoList() {
                   <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => setSelectTodo(data.id)} >
                     <i className="fa-solid fa-pen"></i>
                   </button>
-                  <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div className="modal-dialog">
                       <div className="modal-content">
                         <div className="modal-header">

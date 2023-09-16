@@ -58,7 +58,7 @@ public class UserService {
         }else System.out.println("Böyle bir kullanıcı bulunmamaktadır");
         return null;
     }
-    
+
     //Find and get to-do list from token email
     public List todoList(String token){
         User user = userRepository.findByUseremail(jwtTokenService.getTokenMail(token));

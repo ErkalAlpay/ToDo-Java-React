@@ -1,0 +1,91 @@
+package com.erkalalpay.todofullstack.Service;
+
+
+import com.erkalalpay.todofullstack.Configuration.BeanConfig;
+import com.erkalalpay.todofullstack.Helper.MailHelper;
+import com.erkalalpay.todofullstack.Model.Dto.LoginResponse;
+import com.erkalalpay.todofullstack.Model.Dto.UserDTO;
+import com.erkalalpay.todofullstack.Model.Entity.User;
+import com.erkalalpay.todofullstack.Model.Request.LoginRequest;
+import com.erkalalpay.todofullstack.Model.Request.RegisterFormRequest;
+import com.erkalalpay.todofullstack.Repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import java.util.List;
+
+
+@Service
+public class UserService {
+
+    //Calls
+    @Autowired
+    private BeanConfig beanConfig;
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private JwtTokenService jwtTokenService;
+    @Autowired
+    private MailHelper mailHelper;
+
+    //Functions
+
+    //User Register
+    public void create(RegisterFormRequest request) {
+        User user = new User();
+        user.setUseremail(request.getEmail());
+        user.setPassword(request.getPassword());
+        String bcryptedPassword = beanConfig.bCryptPasswordEncoder().encode(user.getPassword());
+        user.setPassword(bcryptedPassword);
+        userRepository.save(user);
+        //mailHelper.serviceRegister(request.getEmail());
+    }
+
+    //User login
+    public LoginResponse login(LoginRequest loginRequest){
+        //Checking email for existed
+        if(!findByEmailForExisting(loginRequest.getEmail())){
+            //If not existed find the user by email
+            User user = findByEmail(loginRequest.getEmail());
+            LoginResponse loginResponse = new LoginResponse(null);
+            //Password control
+            if(beanConfig.bCryptPasswordEncoder().matches(loginRequest.getPassword(), user.getPassword())){
+            //If the password matches the password in the database, creat token and give user
+            loginResponse.setToken(jwtTokenService.generateToken(loginRequest.getEmail()));
+            user.setIsLogged(true);
+            userRepository.save(user);
+            } else System.out.println("Kullanıcı adı veya şifre hatalı");
+            return loginResponse;
+        }else System.out.println("Böyle bir kullanıcı bulunmamaktadır");
+        return null;
+    }
+
+    //Find and get to-do list from token email
+    public List todoList(String token){
+        User user = userRepository.findByUseremail(jwtTokenService.getTokenMail(token));
+        return user.getTodoList();
+    }
+
+
+    //Get User by email
+    public User findByEmail(String email){
+        User user =userRepository.findByUseremail(email);
+        return user;
+    }
+
+    //Checking users email in database for existing
+    public boolean findByEmailForExisting(String email){
+        if (findByEmail(email) == null){
+            return true; //this email is not existed
+        }else System.out.println("Böyle bir mail adresi databasede bulunmaktadır");
+        return false; //this email is existed
+    }
+    public UserDTO entityToDto(User user) {
+        UserDTO userDTO = beanConfig.modelMapperBean().map(user, UserDTO.class);
+        return userDTO;
+    }
+    public User dtoToEntity(UserDTO userDTO) {
+        User user = beanConfig.modelMapperBean().map(userDTO, User.class);
+        return user;
+    }
+
+}
